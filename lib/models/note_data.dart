@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:notes_app/models/note.dart';
 
-class NoteData {
+class NoteData extends ChangeNotifier {
 //overall list note
   List<Note> allNotes = [
     //defult the first note
@@ -14,6 +15,7 @@ class NoteData {
 //add a new note
   void addNewNote(Note note) {
     allNotes.add(note);
+    notifyListeners();
   }
 
 //update the note
@@ -23,10 +25,12 @@ class NoteData {
         allNotes[i].text == text;
       }
     }
+    notifyListeners();
   }
 
 //delete the note
   void deleteNote(Note note) {
     allNotes.remove(note);
+    notifyListeners();
   }
 }
