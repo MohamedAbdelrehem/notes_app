@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:notes_app/constants/constants.dart';
+import 'package:notes_app/models/note.dart';
 import 'package:notes_app/models/note_data.dart';
 import 'package:provider/provider.dart';
+import 'editing_note_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,6 +14,34 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //create a new note
+  void createNewNote() {
+    //create a new id
+    int id = Provider.of<NoteData>(context, listen: false).getAllNotes().length;
+
+    //create a blank note
+    Note newNote = Note(id: id, text: "");
+
+    //go to edit the note
+    goToNotePage(newNote, true);
+  }
+
+  //go to note editing page
+  void goToNotePage(Note note, bool isNewNote) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => EditingNotePage(
+                  note: note,
+                  isNewNote: isNewNote,
+                )));
+  }
+
+  //delete note
+  void deleteNote(Note note) {
+    Provider.of<NoteData>(context, listen: false).deleteNote(note);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<NoteData>(
@@ -18,9 +49,9 @@ class _HomePageState extends State<HomePage> {
               backgroundColor: CupertinoColors.systemGroupedBackground,
               // appBar: AppBar(backgroundColor: Colors.cyan[200]),
               floatingActionButton: FloatingActionButton(
-                onPressed: createNewNote(),
-                backgroundColor: Colors.cyan[200],
-                child: Icon(Icons.note_add),
+                onPressed: createNewNote,
+                backgroundColor: MyColors.mainTheme,
+                child: Icon(Icons.add),
               ),
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
