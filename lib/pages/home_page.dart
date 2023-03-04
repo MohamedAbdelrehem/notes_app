@@ -61,16 +61,23 @@ class _HomePageState extends State<HomePage> {
                     padding: EdgeInsets.only(left: 25.0, top: 75),
                     child: Text(
                       "Notes",
-                      style:
-                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: MyColors.mainTheme,
+                      ),
                     ),
                   ),
                   //list of notes
                   CupertinoListSection.insetGrouped(
                     children: List.generate(
-                        value.getAllNotes().length,
-                        (index) => CupertinoListTile(
-                            title: Text(value.getAllNotes()[index].text))),
+                      value.getAllNotes().length,
+                      (index) => CupertinoListTile(
+                        title: Text(value.getAllNotes()[index].text),
+                        onTap: () =>
+                            goToNotePage(value.getAllNotes()[index], false),
+                      ),
+                    ),
                   )
                 ],
               ),
