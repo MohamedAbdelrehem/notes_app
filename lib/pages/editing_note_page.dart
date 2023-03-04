@@ -53,73 +53,78 @@ class _EditingNotePageState extends State<EditingNotePage> {
     Provider.of<NoteData>(context, listen: false).updateNote(widget.note, text);
   }
 
+  //!The UI
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: MyColors.mainTheme,
-        leading: IconButton(
-          onPressed: () {
-            //it is new note
-            if (widget.isNewNote && !_controller.document.isEmpty()) {
-              addNewNote();
-            }
-            //it is existing note
-            else {
-              updateNote();
-            }
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_ios_new),
-          color: Colors.black,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: MyColors.mainTheme,
+          elevation: 1,
+          leading: IconButton(
+            onPressed: () {
+              //it is new note
+              if (widget.isNewNote && !_controller.document.isEmpty()) {
+                addNewNote();
+              }
+              //it is existing note
+              else {
+                updateNote();
+              }
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios_new),
+            color: Colors.black,
+          ),
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 15),
-        child: Column(
-          children: [
-            //toolbar
-            QuillToolbar.basic(
-              controller: _controller,
-              showAlignmentButtons: false,
-              showUnderLineButton: false,
-              showBackgroundColorButton: false,
-              showBoldButton: false,
-              showCenterAlignment: false,
-              showClearFormat: false,
-              showCodeBlock: false,
-              showColorButton: false,
-              showDirection: false,
-              showDividers: false,
-              showFontFamily: false,
-              showFontSize: false,
-              showHeaderStyle: false,
-              showIndent: false,
-              showInlineCode: false,
-              showItalicButton: false,
-              showJustifyAlignment: false,
-              showLeftAlignment: false,
-              showLink: false,
-              showListBullets: false,
-              showListCheck: false,
-              showListNumbers: false,
-              showQuote: false,
-              showRightAlignment: false,
-              showSearchButton: false,
-              showSmallButton: false,
-              showStrikeThrough: false,
-            ),
-
-            //editor
-            Expanded(
-                child: Container(
-              child: Padding(
-                padding: const EdgeInsets.all(25),
-                child:
-                    QuillEditor.basic(controller: _controller, readOnly: false),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: Column(
+            children: [
+              //toolbar
+              QuillToolbar.basic(
+                controller: _controller,
+                showAlignmentButtons: false,
+                showUnderLineButton: false,
+                showBackgroundColorButton: false,
+                showBoldButton: false,
+                showCenterAlignment: false,
+                showClearFormat: false,
+                showCodeBlock: false,
+                showColorButton: false,
+                showDirection: false,
+                showDividers: false,
+                showFontFamily: false,
+                showFontSize: false,
+                showHeaderStyle: false,
+                showIndent: false,
+                showInlineCode: false,
+                showItalicButton: false,
+                showJustifyAlignment: false,
+                showLeftAlignment: false,
+                showLink: false,
+                showListBullets: false,
+                showListCheck: false,
+                showListNumbers: false,
+                showQuote: false,
+                showRightAlignment: false,
+                showSearchButton: false,
+                showSmallButton: false,
+                showStrikeThrough: false,
               ),
-            ))
-          ],
+
+              //editor
+              Expanded(
+                  child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(25),
+                  child: QuillEditor.basic(
+                      controller: _controller, readOnly: false),
+                ),
+              ))
+            ],
+          ),
         ),
       ),
     );
