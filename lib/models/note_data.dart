@@ -22,7 +22,7 @@ class NoteData extends ChangeNotifier {
   void updateNote(Note note, String text) {
     for (int i = 0; i < allNotes.length; i++) {
       if (allNotes[i].id == note.id) {
-        allNotes[i].text == text;
+        allNotes[i].text = text;
       }
     }
     notifyListeners();
