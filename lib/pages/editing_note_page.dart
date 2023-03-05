@@ -109,7 +109,7 @@ class _EditingNotePageState extends State<EditingNotePage> {
                 showListNumbers: false,
                 showQuote: false,
                 showRightAlignment: false,
-                showSearchButton: false,
+                // showSearchButton: false,
                 showSmallButton: false,
                 showStrikeThrough: false,
               ),
