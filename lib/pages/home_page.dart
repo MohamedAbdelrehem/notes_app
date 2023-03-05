@@ -14,6 +14,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<NoteData>(context, listen: false).initializeNotes();
+  }
+
   //create a new note
   void createNewNote() {
     //create a new id
@@ -51,7 +58,7 @@ class _HomePageState extends State<HomePage> {
               floatingActionButton: FloatingActionButton(
                 onPressed: createNewNote,
                 backgroundColor: MyColors.mainTheme,
-                child: Icon(Icons.add),
+                child: const Icon(Icons.add),
               ),
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,16 +76,31 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   //list of notes
-                  CupertinoListSection.insetGrouped(
-                    children: List.generate(
-                      value.getAllNotes().length,
-                      (index) => CupertinoListTile(
-                        title: Text(value.getAllNotes()[index].text),
-                        onTap: () =>
-                            goToNotePage(value.getAllNotes()[index], false),
-                      ),
-                    ),
-                  )
+
+                  value.getAllNotes().length == 0
+                      ? Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: Text("No Notes yet 😊",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: MyColors.secoundryTheme)),
+                          ),
+                        )
+                      : CupertinoListSection.insetGrouped(
+                          children: List.generate(
+                            value.getAllNotes().length,
+                            (index) => CupertinoListTile(
+                              title: Text(
+                                value.getAllNotes()[index].text,
+                                style:
+                                    TextStyle(color: MyColors.secoundryTheme),
+                              ),
+                              onTap: () => goToNotePage(
+                                  value.getAllNotes()[index], false),
+                            ),
+                          ),
+                        )
                 ],
               ),
             ));
