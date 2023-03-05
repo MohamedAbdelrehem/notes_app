@@ -97,6 +97,14 @@ class _HomePageState extends State<HomePage> {
                               ),
                               onTap: () => goToNotePage(
                                   value.getAllNotes()[index], false),
+                              trailing: IconButton(
+                                icon: Icon(
+                                  Icons.delete,
+                                  color: MyColors.secoundryTheme,
+                                ),
+                                onPressed: () =>
+                                    deleteNote(value.getAllNotes()[index]),
+                              ),
                             ),
                           ),
                         )
