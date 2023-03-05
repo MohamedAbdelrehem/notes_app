@@ -24,4 +24,16 @@ class HiveDataBase {
     }
     return savedNotesFormatted;
   }
+
+  // save notes
+  void saveNotes(List<Note> allNotes) {
+    List<List<dynamic>> allNotesFormated = [];
+    for (var note in allNotes) {
+      int id = note.id;
+      String text = note.text;
+      allNotesFormated.add([id, text]);
+    }
+    //store in hive
+    _myBox.put("ALL_NOTES", allNotesFormated);
+  }
 }
