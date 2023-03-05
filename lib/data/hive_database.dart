@@ -17,7 +17,6 @@ class HiveDatabase {
         //create individual note
         Note individualNote =
             Note(id: savedNotes[i][0], text: savedNotes[i][1]);
-        print("id = ${savedNotes[i][0]} text = ${savedNotes[i][1]}");
         //add to list
         savedNotesFormatted.add(individualNote);
       }

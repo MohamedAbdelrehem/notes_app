@@ -16,7 +16,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Provider.of<NoteData>(context, listen: false).initializeNotes();
   }
@@ -77,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   //list of notes
 
-                  value.getAllNotes().length == 0
+                  value.getAllNotes().isEmpty
                       ? Center(
                           child: Padding(
                             padding: const EdgeInsets.only(top: 20),

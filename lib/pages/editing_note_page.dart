@@ -19,7 +19,6 @@ class _EditingNotePageState extends State<EditingNotePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadExistingNote();
   }
@@ -116,12 +115,10 @@ class _EditingNotePageState extends State<EditingNotePage> {
 
               //editor
               Expanded(
-                  child: Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(25),
-                  child: QuillEditor.basic(
-                      controller: _controller, readOnly: false),
-                ),
+                  child: Padding(
+                padding: const EdgeInsets.all(25),
+                child:
+                    QuillEditor.basic(controller: _controller, readOnly: false),
               ))
             ],
           ),
