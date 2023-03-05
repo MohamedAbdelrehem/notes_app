@@ -79,11 +79,11 @@ class _HomePageState extends State<HomePage> {
                   value.getAllNotes().isEmpty
                       ? Center(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Text("No Notes yet 😊",
+                            padding: const EdgeInsets.only(top: 50),
+                            child: Text("create a Note from the + icon",
                                 style: TextStyle(
                                     fontSize: 15,
-                                    color: MyColors.secoundryTheme)),
+                                    color: Color.fromARGB(255, 128, 128, 128))),
                           ),
                         )
                       : CupertinoListSection.insetGrouped(
